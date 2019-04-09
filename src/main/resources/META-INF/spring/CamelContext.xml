@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:broker="http://activemq.apache.org/schema/core" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
   <bean class="biz.majorov.camel.CustomerServiceBean" id="customerServiceBean" init-method="generateCustomers"/>
   
-  <camelContext trace="true" id="nm-context" xmlns="http://camel.apache.org/schema/spring">
+  <camelContext trace="false" id="nm-context" xmlns="http://camel.apache.org/schema/spring">
   
   <route streamCache="true" id="customers-service">
     <from uri="direct:in"/>
