@@ -2,28 +2,21 @@
 <features name="nm-spring.${project.version}"
           xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
-  <repository>mvn:org.apache.activemq/activemq-karaf/5.9.0.redhat-610379/xml/features</repository>
-
 
   <feature name="cdf-camel-quartz2" version="${project.version}" resolver="(obr)">
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.c3p0/0.9.1.2_1</bundle>
     <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.hsqldb/1.8.0.10_2</bundle>
   
-    <bundle dependency="true">mvn:org.quartz-scheduler/quartz/2.2.1</bundle>
     <feature version="[2.17,3)">camel-core</feature>
-    <bundle>
-        mvn:org.apache.camel/camel-quartz2/2.12.0.redhat-610379
-    </bundle>
-
+    <feature version="[2.17,3)">camel-quartz2</feature>
+ 
   </feature>
 
   <feature name="nm-spring" version="${project.version}" resolver="(obr)">
     <feature version="[2.12,3)">camel-spring</feature>
     <feature version="[2.12,3)">camel-sql</feature>
     <feature version="${project.version}">cdf-camel-quartz2</feature>
-    <!---
-    <feature version="[5.9,10)">activemq-camel</feature>
--->
+ 
      <bundle>mvn:biz.majorov.camel/nm-spring/${project.version}</bundle>
   </feature>
 
