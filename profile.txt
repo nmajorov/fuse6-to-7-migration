@@ -1,0 +1,6 @@
+profile-create --parents feature-camel nm-spring
+
+profile-edit --repositories  mvn:biz.majorov.camel/nm-spring/1.0-SNAPSHOT/xml/features nm-spring
+
+profile-edit --features  nm-spring nm-spring
+	  
