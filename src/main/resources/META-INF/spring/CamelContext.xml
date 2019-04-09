@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:broker="http://activemq.apache.org/schema/core" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
   <bean class="biz.majorov.camel.CustomerServiceBean" id="customerServiceBean" init-method="generateCustomers"/>
   
-  <camelContext trace="false" id="nm-context" xmlns="http://camel.apache.org/schema/spring">
+  <camelContext trace="true" id="nm-context" xmlns="http://camel.apache.org/schema/spring">
   
   <route streamCache="true" id="customers-service">
     <from uri="direct:in"/>
@@ -10,7 +10,7 @@
     <split id="split1">
       <simple>body</simple>
       <log message="splitted message: ${body}" id="log1"/>
-      <to uri="sql:INSERT INTO CUSTOMERS(ID,DATA) VALUES (DEFAULT,#)" id="Persist entity"/>
+      <to uri="sql:INSERT INTO CUSTOMERS(DATA) VALUES (#)" id="Persist entity"/>
     </split>
     <log message="insert done"/>
     <to uri="direct:select" />
@@ -23,12 +23,13 @@
   </route>
   
   <route startupOrder="1" id="start">
-    <from uri="timer://myTimer?repeatCount=1"/>
+    <from uri="quartz2://myGroup/myTimerName?cron=0/2+*+*+*+*+?"/>
     <to uri="direct:in"/>
-    
   </route>
 </camelContext>
 
+
+  
   <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" id="nm-ds">
     <property name="driverClass" value="${db.driver}"/>
     <property name="JdbcUrl" value="${db.url}"/>

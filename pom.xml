@@ -43,6 +43,11 @@
         <groupId>org.apache.camel</groupId>
          <artifactId>camel-sql</artifactId>
     </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-quartz2</artifactId>
+    </dependency>
+    
    <dependency>
     <groupId>org.apache.servicemix.bundles</groupId>
     <artifactId>org.apache.servicemix.bundles.c3p0</artifactId>
@@ -218,6 +223,7 @@
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package>biz.majorov.camel.*</Export-Package>
+            <Fragment-Host>org.apache.servicemix.bundles.c3p0</Fragment-Host>
             <Import-Package>org.slf4j;version="[1.6,2)",
               org.hsqldb,*
             </Import-Package>
