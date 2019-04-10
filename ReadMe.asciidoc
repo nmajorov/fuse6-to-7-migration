@@ -3,7 +3,11 @@
 this is sample application used as example to evaluate migration form 
 Fuse6 to Fuse7 agile intergration solution based on karaf.
 
-To see same application for Fuse7 just look at the git branch fuse7.
+To see same application for Fuse7 just look at the git branch fuse7-2.
+
+Run compare
+https://github.com/nmajorov/fuse6-to-7-migration/compare/fuse7-2?expand=1
+
 
 Main points noticed for migration:
 
