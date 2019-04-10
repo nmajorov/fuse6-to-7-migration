@@ -8,21 +8,20 @@
   <packaging>bundle</packaging>
   <name>Spring Camel example</name>
   <properties>
-    <jboss.fuse.bom.version>6.3.0.redhat-371</jboss.fuse.bom.version>
+    <jboss.fuse.bom.version>7.2.0.fuse-720035-redhat-00001</jboss.fuse.bom.version>
     <fabric8.profile>quickstarts-webservice</fabric8.profile>
     <version.maven-bundle-plugin>2.3.7</version.maven-bundle-plugin>
     <maven.compiler.target>1.7</maven.compiler.target>
     <fabric8.parentProfiles>feature-camel feature-cxf</fabric8.parentProfiles>
     <fabric.version>1.0.0.redhat-379</fabric.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <version.compiler.plugin>2.3.1</version.compiler.plugin>
-    <fabric8.features>camel-cxf camel-spring cxf-http-jetty</fabric8.features>
-    <maven.compiler.source>1.7</maven.compiler.source>
+    <version.compiler.plugin>3.7.0</version.compiler.plugin>
+    <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.jboss.fuse.bom</groupId>
+        <groupId>org.jboss.fuse</groupId>
         <artifactId>jboss-fuse-parent</artifactId>
         <version>${jboss.fuse.bom.version}</version>
         <type>pom</type>
@@ -47,14 +46,8 @@
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-quartz2</artifactId>
     </dependency>
-    
-   <dependency>
-    <groupId>org.apache.servicemix.bundles</groupId>
-    <artifactId>org.apache.servicemix.bundles.c3p0</artifactId>
-    <version>0.9.1.2_1</version>
-   </dependency>
 
-
+  
    <dependency>
      <groupId>org.apache.servicemix.bundles</groupId>
      <artifactId>org.apache.servicemix.bundles.hsqldb</artifactId>
@@ -151,6 +144,19 @@
       <name>FuseSource Release Repository</name>
       <url>https://repo.fusesource.com/nexus/content/groups/public/</url>
     </repository>
+
+      <repository>
+          <id>jboss-releases-repository</id>
+          <name>JBoss Releases Repository</name>
+          <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2</url>
+      </repository>
+      <repository>
+          <id>jboss-snapshots-repository</id>
+          <name>JBoss Snapshots Repository</name>
+          <url>https://repository.jboss.org/nexus/content/repositories/snapshots</url>
+      </repository>
+
+
     <repository>
       <releases>
         <enabled>true</enabled>
@@ -223,7 +229,7 @@
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package>biz.majorov.camel.*</Export-Package>
-           
+
             <Import-Package>org.slf4j;version="[1.6,2)",
               org.hsqldb,*
             </Import-Package>

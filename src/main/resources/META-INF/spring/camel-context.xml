@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:broker="http://activemq.apache.org/schema/core" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:camel="http://camel.apache.org/schema/spring"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+         
   <bean class="biz.majorov.camel.CustomerServiceBean" id="customerServiceBean" init-method="generateCustomers"/>
-  
+
   <camelContext trace="false" id="nm-context" xmlns="http://camel.apache.org/schema/spring">
-  
+
   <route streamCache="true" id="customers-service">
     <from uri="direct:in"/>
     <bean ref="customerServiceBean" method="getCustomers" id="bean1"/>
@@ -15,21 +21,24 @@
     <log message="insert done"/>
     <to uri="direct:select" />
   </route>
-  
+
   <route id="select-customer">
     <from uri="direct:select" />
     <from uri="sql:select * from CUSTOMERS ORDER BY ID"/>
     <to uri="log:result"/>
   </route>
-  
+
   <route startupOrder="1" id="start">
+  <!--
     <from uri="quartz2://myGroup/myTimerName?cron=0/2+*+*+*+*+?"/>
+    -->
+     <from uri="timer://foo?period=5s"/>
     <to uri="direct:in"/>
   </route>
 </camelContext>
 
 
-  
+
   <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" id="nm-ds">
     <property name="driverClass" value="${db.driver}"/>
     <property name="JdbcUrl" value="${db.url}"/>

@@ -26,17 +26,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CustomerRouteTest extends CamelSpringTestSupport {
     @EndpointInject(uri = "log:customers")
     protected LogEndpoint resultEndpoint;
-    
+
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/CamelContext.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
     }
 
     @Test
     public void testCustomerFuse() throws Exception {
          template.sendBody("direct:in", "");
-         
+
          assertTrue(resultEndpoint.isStarted());
- 
+
     }
 }
