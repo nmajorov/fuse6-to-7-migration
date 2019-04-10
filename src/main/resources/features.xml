@@ -5,21 +5,15 @@
   <repository>mvn:org.apache.karaf.features/spring-legacy/4.2.0.fuse-720061-redhat-00001/xml/features</repository>
   <repository>mvn:org.apache.camel.karaf/apache-camel/2.21.0.fuse-720050-redhat-00001/xml/features</repository>
 
-  <feature name="cdf-camel-quartz2" version="${project.version}" resolver="(obr)">
+  <feature name="nm-spring" version="${project.version}" resolver="(obr)">
     <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.c3p0/0.9.1.2_1</bundle>
     <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.hsqldb/1.8.0.10_2</bundle>
-    <bundle dependency="true">mvn:org.apache.camel/camel-quartz2/2.21.0.fuse-720050-redhat-00001</bundle>
-    <feature version="[2.21,3)">camel-core</feature>
-    <feature version="[2.21,3)">camel-quartz2</feature>
-
-  </feature>
-
-  <feature name="nm-spring" version="${project.version}" resolver="(obr)">
     <feature version="[2.21,3)">camel-spring</feature>
     <feature version="[2.21,3)">camel-sql</feature>
-    <feature version="${project.version}">cdf-camel-quartz2</feature>
+    <feature version="[2.21,3)">camel-core</feature>
+    <feature version="[2.21,3)">camel-quartz2</feature>
     <feature version="[4.2,5)">aries-blueprint-spring</feature>
-     <bundle>mvn:biz.majorov.camel/nm-spring/${project.version}</bundle>
+    <bundle>mvn:biz.majorov.camel/nm-spring/${project.version}</bundle>
   </feature>
 
 

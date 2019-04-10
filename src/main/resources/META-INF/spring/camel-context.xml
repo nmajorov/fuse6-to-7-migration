@@ -29,15 +29,19 @@
   </route>
 
   <route startupOrder="1" id="start">
-  <!--
+  
     <from uri="quartz2://myGroup/myTimerName?cron=0/2+*+*+*+*+?"/>
-    -->
+  <!--
      <from uri="timer://foo?period=5s"/>
+    -->
     <to uri="direct:in"/>
   </route>
 </camelContext>
 
 
+<bean id="quartz2" class="org.apache.camel.component.quartz2.QuartzComponent">
+	   <property name="startDelayedSeconds" value="5"/>
+	</bean>
 
   <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" id="nm-ds">
     <property name="driverClass" value="${db.driver}"/>
