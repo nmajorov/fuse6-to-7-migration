@@ -29,7 +29,7 @@ public class CustomerRouteTest extends CamelSpringTestSupport {
     
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/CamelContext.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
     }
 
     @Test
