@@ -1,4 +1,28 @@
-Camel Splitting of message - Customers Example
+# Karaf based FUSE6 to Fuse7 migration
+
+this is sample application used as example to evaluate migration form 
+Fuse6 to Fuse7 agile intergration solution based on karaf.
+
+To see same application for Fuse7 just look at the git branch fuse7.
+
+Main points noticed for migration:
+
+* use version range for features. 
+   it will save you time during migration.
+
+[source,xml]
+-------------------------------------------
+
+    <feature version="[2.12,3)">camel-core</feature>
+
+-------------------------------------------
+
+* Develop camel routes as plain java. it can be easy adopted to every 
+flavor of Fuse product.
+
+
+
+Application: Camel Splitting of message - Customers Example
 ==============================================
 Component used camel-sql, customized pool osgi
 
